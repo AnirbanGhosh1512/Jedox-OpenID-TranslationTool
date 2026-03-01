@@ -1,0 +1,38 @@
+@model Idp.Models.LoginViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Sign In";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>🌐 Translation Tool</h2>
+        <p>Sign in to continue</p>
+    </div>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert-error">
+            @Html.ValidationSummary(true)
+        </div>
+    }
+
+    <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label asp-for="Username">Username</label>
+            <input asp-for="Username" class="form-control" placeholder="admin or user" autofocus/>
+            <span asp-validation-for="Username" class="field-validation-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" class="form-control" placeholder="Password"/>
+            <span asp-validation-for="Password" class="field-validation-error"></span>
+        </div>
+        <button type="submit" class="btn-submit">Sign In</button>
+    </form>
+
+    <p class="hint">
+        Demo: <strong>admin / admin123</strong> &nbsp;·&nbsp; <strong>user / user123</strong>
+    </p>
+</div>
