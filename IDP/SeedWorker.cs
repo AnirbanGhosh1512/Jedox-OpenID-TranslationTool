@@ -14,18 +14,6 @@ public class SeedWorker : IHostedService
         using var scope = _services.CreateScope();
 
         var appManager   = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-        //var scopeManager = scope.ServiceProvider.GetRequiredService<IOpenIddictScopeManager>();
-
-        // Register the "api" scope first
-        //if (await scopeManager.FindByNameAsync("api", ct) is null)
-        //{
-            //await scopeManager.CreateAsync(new OpenIddictScopeDescriptor
-            //{
-                //Name        = "api",
-                //DisplayName = "Translation API access",
-                //Resources   = { "translation-api" }
-            //}, ct);
-        //}
 
         // PHP UI client
         if (await appManager.FindByClientIdAsync("php-ui", ct) is null)
